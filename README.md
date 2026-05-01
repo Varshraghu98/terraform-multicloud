@@ -140,34 +140,3 @@ terraform plan \
 cd gcp-sql
 terraform destroy -var='project_id=YOUR_GCP_PROJECT_ID'
 ```
-
-## Recommended: Use `terraform.tfvars`
-
-Instead of passing `-var` every time, create a `terraform.tfvars` in each provider folder.
-
-Examples:
-
-`aws-sql/terraform.tfvars`
-
-```hcl
-key_pair_name = "my-ec2-keypair"
-```
-
-`azure-sql/terraform.tfvars`
-
-```hcl
-vm_admin_password = "REPLACE_WITH_STRONG_PASSWORD"
-```
-
-`gcp-sql/terraform.tfvars`
-
-```hcl
-project_id = "my-gcp-project-id"
-```
-
-Then run:
-
-```bash
-terraform plan
-terraform apply
-```
