@@ -10,13 +10,13 @@ terraform {
 }
 
 provider "azurerm" {
-  subscription_id                 = "444b0153-163f-4ff5-8ca8-e99dd055fc34"
+  subscription_id                 = "SUBSCRIPTION_ID"
   resource_provider_registrations = "none"
   features {}
 }
 
 data "azurerm_resource_group" "existing" {
-  name = "azure-network-components"
+  name = "aws-azure-same-region"
 }
 
 resource "azurerm_virtual_network" "application_deployment_vnet" {
@@ -105,6 +105,7 @@ resource "azurerm_network_interface" "application_deployment_vm_nic" {
   name                = "application-deployment-vm-nic"
   location            = "Germany West Central"
   resource_group_name = data.azurerm_resource_group.existing.name
+  accelerated_networking_enabled = true
 
   ip_configuration {
     name                          = "application-deployment-vm-ipconfig"
