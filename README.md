@@ -37,11 +37,6 @@ terraform destroy
 - VPC, public subnet, route table, internet gateway
 - Security group
 - EC2 instance (Ubuntu)
-- S3 gateway VPC endpoint
-
-### Required input
-
-- `key_pair_name` (optional): existing EC2 key pair for SSH
 
 ### Run
 
@@ -108,15 +103,6 @@ terraform destroy -var='vm_admin_password=REPLACE_WITH_STRONG_PASSWORD'
 
 - `project_id` (required)
 
-### Optional inputs
-
-- `region` (default: `europe-west3`)
-- `zone` (default: `europe-west3-a`)
-- `network_name` (default: `application-deployment`)
-- `subnet_name` (default: `application-deployment-subnet`)
-- `instance_name` (default: `application-deployment-vm`)
-- `ssh_source_ranges` (default: `["0.0.0.0/0"]`)
-
 ### Run
 
 ```bash
@@ -124,14 +110,6 @@ cd gcp-sql
 terraform init
 terraform plan -var='project_id=YOUR_GCP_PROJECT_ID'
 terraform apply -var='project_id=YOUR_GCP_PROJECT_ID'
-```
-
-Example with restricted SSH source:
-
-```bash
-terraform plan \
-  -var='project_id=YOUR_GCP_PROJECT_ID' \
-  -var='ssh_source_ranges=["YOUR.PUBLIC.IP.ADDR/32"]'
 ```
 
 ### Destroy
